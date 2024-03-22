@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+struct Message {
+    let sender: String // user email
+    let body: String
+    
+    static var example = [ Message(sender: "user1@flashchat.com", body: "Hello!"),
+                           Message(sender: "user2@flashchat.com", body: "Hello!"),
+                           Message(sender: "user1@flashchat.com", body: "Are you OK?"),
+        ]
+}

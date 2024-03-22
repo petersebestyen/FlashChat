@@ -7,13 +7,30 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
 
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = UIColor(named: Constants.BrandColors.blue)
+    }
+    
     @IBAction func registerPressed(_ sender: UIButton) {
+        if let email = emailTextfield.text, let password = passwordTextfield.text {
+            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                if let e = error {
+                    print(e.localizedDescription)
+                    return
+                }
+                
+                self.performSegue(withIdentifier: Constants.registerSegue, sender: self)
+            }
+        }
+        
     }
     
 }
